@@ -1,0 +1,9 @@
+{
+  "include": ["types.d.ts", ".eslintrc.js"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "typeRoots": [
+        "./node_modules/@types"
+    ]
+  }
+}

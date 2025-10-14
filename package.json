@@ -1,0 +1,43 @@
+{
+  "name": "mtls",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "tsc": "tsc",
+    "build": "tsc && copyfiles views/* views/**/* views/**/**/* public/**/*.js public/**/**/*.js public/**/**/**/*.js public/**/*.css .env package.json package-lock.json dist",
+    "predev": "npm install && npm run build",
+    "dev": "dotenvx run -- node ./dist/app.js",
+    "nodemon": "nodemon --inspect --exec npm run dev"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "./views",
+      "./public",
+      "**/*.ts"
+    ],
+    "ext": "ejs,css,png,tsx,js,ts,json",
+    "ignore": [
+      "dist",
+      "node_modules"
+    ]
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.51.0",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/express": "^5.0.3",
+    "@types/http-errors": "^2.0.5",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.7.2",
+    "copyfiles": "^2.4.1",
+    "nodemon": "^3.1.10",
+    "typescript": "^5.9.3"
+  }
+}

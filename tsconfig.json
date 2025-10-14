@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitReturns": true,
+        "outDir": "dist",
+        "sourceMap": true,
+        "target": "ES2020",
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "skipLibCheck": true,
+        "allowJs": true,
+        "baseUrl": ".",
+        "declaration": true,
+        "isolatedModules": true
+    },
+    "compileOnSave": true,
+    "include": [
+        "**/*.ts",
+        "routes/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ],
+    "ts-node": {
+        "files": true
+    }
+}
