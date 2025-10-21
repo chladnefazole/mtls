@@ -1,6 +1,6 @@
-To make a Node.JS app available online with Apache, you need to complete the following steps:
+### To make a Node.JS app available online with Apache, you need to complete the following steps:
 
-Apache:
+#### Apache:
 - Install Apache
 - Create a new site in Apache config
 - Create a directory for the site files
@@ -9,16 +9,16 @@ Apache:
 - Make sure Apache is listening to port 443 (and 80 if you want to offer it)
 - Redirect requests from 443/80 to your NodeJS app port
 
-Firewall:
+#### Firewall:
 - Allow access to ports from the web (443 and, optionally, 80)
 - Guide for Apache on Ubuntu here: https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 
-Node:
+#### Node:
 - Create your NodeJS app
 - Setup build scripts, to build to the directory you setup during the Apache config (optional but it keeps things nice and neat)
 - Run the Node app (pm2 or nodemon are great) - on Linux, make sure the app is running on a port > 1024
 
-DNS:
+#### DNS:
 - Buy a domain name!
 - Setup DNS to route traffic to your server's IP
 
