@@ -4,6 +4,7 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitReturns": true,
+        // "outDir": "/var/www/testmtls",
         "outDir": "dist",
         "sourceMap": true,
         "target": "ES2020",

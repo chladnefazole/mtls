@@ -45,16 +45,36 @@ app.use(function(err: HttpError, req: Request, res: Response, next: NextFunction
 // start the express server
 let serverInstance;
 if (process.env.NODE_ENV === "production") {
-    const certPath = fs.realpathSync(path.join(process.env.SSL_PATH, "fullchain.pem"));
-    const keyPath = fs.realpathSync(path.join(process.env.SSL_PATH, "privkey.pem"));
-    const options = {
-        key: fs.readFileSync(keyPath),
-        cert: fs.readFileSync(certPath),
-        port: process.env.PORT,
-        headers: {
-            'Accept': 'application/json'
-        }
-    }
+    // You can also do your MTLS negotiation here, but with Apache or another server it is not necessary.
+    // Apache will connect securely to the client, and redirect traffic to your app.
+    // If you want to use MTLS with NodeJS, you would set it up like so:
+    // const certPath = fs.realpathSync(path.normalize(process.env.SSL_CERT_CHAIN_PATH));
+    // const keyPath = fs.realpathSync(path.normalize(process.env.SSL_KEY_PATH));
+    // const caPath = fs.realpathSync(path.normalize(process.env.SSL_CA_PATH));
+    // const options = {
+    //     key: fs.readFileSync(keyPath),
+    //     cert: fs.readFileSync(certPath),
+    //     port: process.env.PORT,
+    //     ca: fs.readFileSync(caPath),
+    //     requestCert: true
+    //     rejectUnauthorized: true // Set to false if you want to allow requests which failed to negotiate to pass through
+    //     headers: {
+    //         'Accept': 'application/json'
+    //     }
+    // }
+
+    // The current setup means that traffic between Apache and your Node app will NOT be encrypted.
+    // To encrypt, use the setup here (TLS, not MTLS):
+    // const certPath = fs.realpathSync(path.normalize(process.env.SSL_CERT_CHAIN_PATH));
+    // const keyPath = fs.realpathSync(path.normalize(process.env.SSL_KEY_PATH));
+    // const options = {
+    //     key: fs.readFileSync(keyPath),
+    //     cert: fs.readFileSync(certPath),
+    //     port: process.env.PORT,
+    //     headers: {
+    //         'Accept': 'application/json'
+    //     }
+    // }
     serverInstance = http.createServer(app);
     serverInstance.listen(process.env.PORT, () => {
         console.log('Secure server is listening on port ' + process.env.PORT);
